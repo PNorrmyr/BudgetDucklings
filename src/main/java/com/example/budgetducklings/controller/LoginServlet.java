@@ -22,25 +22,20 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        switch (req.getPathInfo()) {
-            case"/login": login(req, resp); break;
-            case"/logout": logout(req, resp); break;
-        }
+            login(req, resp);
     }
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if (users.get(username) == null) {
-            req.getRequestDispatcher("/register.jsp").forward(req, resp);
-        } else if (users.get(username).equals(password)) {
+        if (users.get(username) == null || !users.get(username).equals(password)) {
+            resp.sendRedirect("index.jsp?error=invalid%20login");
+        } else {
             HttpSession session = req.getSession(true);
             session.setAttribute("username", username);
 
-            resp.sendRedirect("/invoice");
-        } else {
-            resp.sendRedirect("/index.jsp?error=invalid%20login");
+            resp.sendRedirect("invoice.jsp");
         }
     }
 
