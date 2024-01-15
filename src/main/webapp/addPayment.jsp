@@ -12,5 +12,31 @@
 </head>
 <body>
 <h1>Add Payment</h1>
+<form method="post" action="/payment">
+    <label>Title</label>
+    <input type="text" name="title">
+    <br>
+    <label>Date</label>
+    <input type="date" name="date">
+    <br>
+    <label>Description</label>
+    <input type="text" name="description">
+    <br>
+    <label>Category </label>
+    <select name="category">
+        <option value="cat1">Category 1</option>
+        <option value="cat2">Category 2</option>
+        <option value="cat3">Category 3</option>
+        <option value="cat4">Category 4</option>
+    <br>
+    <label>Amount</label>
+    <input type="text" name="amount">
+    <br>
+
+    <button>Add Expense</button>
+</form>
+
+
+
 </body>
 </html>
