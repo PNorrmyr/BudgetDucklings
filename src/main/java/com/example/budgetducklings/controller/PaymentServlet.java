@@ -41,7 +41,7 @@ public class PaymentServlet extends HttpServlet {
 
             paymentService.create(title, date, description, category, amount);
 
-            resp.sendRedirect("/invoice");
+            resp.sendRedirect(req.getServletPath());
         }
     }
 }
