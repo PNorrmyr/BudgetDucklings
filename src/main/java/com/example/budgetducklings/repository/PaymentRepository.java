@@ -15,7 +15,7 @@ public class PaymentRepository {
     public PaymentRepository(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/payments", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/budgetducklings", "root", "");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -34,10 +34,10 @@ public class PaymentRepository {
                 PaymentEntry entry = new PaymentEntry();
 
                 entry.setTitle(rs.getString("title"));
-                entry.setTitle(rs.getString("date"));
-                entry.setTitle(rs.getString("description"));
-                entry.setTitle(rs.getString("category"));
-                entry.setTitle(rs.getString("amount"));
+                entry.setDate(rs.getString("date"));
+                entry.setDescription(rs.getString("description"));
+                entry.setCategory(rs.getString("category"));
+                entry.setAmount(rs.getString("amount"));
 
                 entries.add(entry);
             }
@@ -51,7 +51,7 @@ public class PaymentRepository {
     public void create(String title, Date date, String description, String category, int amount) {
 
 
-        String sql = "INSERT INTO payments (title, date, description, category, amount" +
+        String sql = "INSERT INTO payments (title, date, description, category, amount)" +
                     "VALUES (?, ?, ?, ?, ?)";
 
         try {

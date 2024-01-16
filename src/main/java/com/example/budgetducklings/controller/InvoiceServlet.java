@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/invoice")
 public class InvoiceServlet extends HttpServlet {
@@ -14,6 +15,8 @@ public class InvoiceServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Hello Invoice");
+        PrintWriter out = resp.getWriter();
+
+        out.println("Invoice");
     }
 }

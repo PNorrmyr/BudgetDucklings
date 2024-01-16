@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Add Payment</h1>
-<form method="post" action="/payment">
+<form method="post" action="${pageContext.request.contextPath}/payment">
     <label>Title</label>
     <input type="text" name="title">
     <br>
@@ -24,10 +24,10 @@
     <br>
     <label>Category </label>
     <select name="category">
-        <option value="cat1">Category 1</option>
-        <option value="cat2">Category 2</option>
-        <option value="cat3">Category 3</option>
-        <option value="cat4">Category 4</option>
+        <option value="Travel to/from work">Travel to/from work</option>
+        <option value="Lunch meeting">Lunch meeting</option>
+        <option value="Overtime">Overtime</option>
+        <option value="Other">Other</option>
     <br>
     <label>Amount</label>
     <input type="text" name="amount">
