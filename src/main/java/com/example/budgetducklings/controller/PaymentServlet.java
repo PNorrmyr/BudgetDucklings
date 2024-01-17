@@ -39,9 +39,9 @@ public class PaymentServlet extends HttpServlet {
             String category = req.getParameter("category");
             int amount = Integer.parseInt(req.getParameter("amount"));
 
-            paymentService.create(title, date, description, category, amount);
+            paymentService.create(title, date, description, category, amount, username);
 
-            resp.sendRedirect(req.getServletPath());
+            resp.sendRedirect("/BudgetDucklings_war/invoice");
         }
     }
 }

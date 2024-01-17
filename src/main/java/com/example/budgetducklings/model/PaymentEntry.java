@@ -7,6 +7,7 @@ public class PaymentEntry {
     private String description;
     private String category;
     private String amount;
+    private String owner;
 
     public String getTitle() {
         return title;
@@ -46,5 +47,13 @@ public class PaymentEntry {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

@@ -10,11 +10,11 @@ public class PaymentService {
     private PaymentRepository paymentRepository = new PaymentRepository();
 
 
-    public List<PaymentEntry> getAll(){
-        return paymentRepository.getAll();
+    public List<PaymentEntry> getAll(String owner){
+        return paymentRepository.getAll(owner);
     }
 
-    public void create(String title, Date date, String description, String category, int amount) {
-        paymentRepository.create(title, date, description, category, amount);
+    public void create(String title, Date date, String description, String category, int amount, String owner) {
+        paymentRepository.create(title, date, description, category, amount, owner);
     }
 }
