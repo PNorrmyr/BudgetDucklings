@@ -33,16 +33,24 @@ public class InvoiceServlet extends HttpServlet {
 
             PrintWriter out = resp.getWriter();
             out.println("<h1>" + username + "'s Invoices</h2>");
+
             out.println("<form action=\"addPayment.jsp\">");
             out.println("<button >Add payment</button>");
             out.println("</form>");
+
             out.println("<form action=\"editPayment.jsp\">");
-            out.println("<button>Edit payments</button>");
+            out.println("<button>Edit expense</button>");
+            out.print("<input type=\"number\" name=\"id\" placeholder=\"Expense number\">");
+            out.println("</form>");
+
+            out.println("<form method= \"POST\" action=\"/BudgetDucklings_war/payment/delete\">");
+            out.println("<button>Delete expense</button>");
+            out.print("<input type=\"number\" name=\"id\" placeholder=\"Expense Number\">");
             out.println("</form>");
 
 
             for (PaymentEntry entry : paymentEntries) {
-                out.println("<br>Title: " + entry.getTitle() + "<br>Date: " + entry.getDate() + "<br>Description: " + entry.getDescription() + "<br>Category: " + entry.getCategory() + "<br>Amount: " + entry.getAmount() + "<br>--------------");
+                out.println("Expense number, " + entry.getId() + "<br>Title: " + entry.getTitle() + "<br>Date: " + entry.getDate() + "<br>Description: " + entry.getDescription() + "<br>Category: " + entry.getCategory() + "<br>Amount: " + entry.getAmount() + "<br>--------------<br>");
             }
         }
 }}

@@ -9,6 +9,8 @@ public class PaymentEntry {
     private String amount;
     private String owner;
 
+    private int id;
+
     public String getTitle() {
         return title;
     }
@@ -55,5 +57,13 @@ public class PaymentEntry {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

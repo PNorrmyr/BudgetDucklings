@@ -17,4 +17,11 @@ public class PaymentService {
     public void create(String title, Date date, String description, String category, int amount, String owner) {
         paymentRepository.create(title, date, description, category, amount, owner);
     }
+
+    public boolean delete(String owner, int id){
+        return paymentRepository.delete(owner, id);
+    }
+
+    //public PaymentEntry update(PaymentEntry entry){
+    //}
 }

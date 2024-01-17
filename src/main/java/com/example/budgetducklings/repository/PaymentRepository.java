@@ -14,7 +14,7 @@ public class PaymentRepository {
     public PaymentRepository(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/budgetducklings", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/budgetducklings?createDatabaseIfNotExist=true", "root", "");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -24,7 +24,7 @@ public class PaymentRepository {
         List<PaymentEntry> entries = new ArrayList<>();
 
 
-        String sql = "SELECT title, date, description, category, amount FROM payments WHERE owner = ?";
+        String sql = "SELECT id, title, date, description, category, amount FROM payments WHERE owner = ?";
 
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -34,6 +34,7 @@ public class PaymentRepository {
             while (rs.next()) {
                 PaymentEntry entry = new PaymentEntry();
 
+                entry.setId(rs.getInt("id"));
                 entry.setTitle(rs.getString("title"));
                 entry.setDate(rs.getString("date"));
                 entry.setDescription(rs.getString("description"));
@@ -71,4 +72,36 @@ public class PaymentRepository {
         }
     }
 
+    public boolean delete(String owner, int id) {
+        String sql = "DELETE FROM payments WHERE id = ? AND owner = ?";
+
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.setString(2, owner);
+
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
+   /* public PaymentEntry update(PaymentEntry entry) {
+        String sql = "INSERT INTO payments (title, date, description, category, amount) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, entry.getTitle());
+            pstmt.setDate(2, entry.getDate());
+            pstmt.setString(3, entry.getDescription());
+            pstmt.setString(4, entry.getCategory());
+            pstmt.setInt(5, entry.getAmount());
+
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }*/
 }

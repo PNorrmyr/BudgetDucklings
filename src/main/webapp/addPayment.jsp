@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Add Payment</h1>
-<form method="post" action="${pageContext.request.contextPath}/payment">
+<form method="post" action="${pageContext.request.contextPath}/payment/add">
     <label>Title</label>
     <input type="text" name="title">
     <br>
