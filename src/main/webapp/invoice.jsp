@@ -20,13 +20,5 @@
     <button>Edit payments</button>
 </form>
 
-<c:forEach var="entry" items="${paymentEntries}">
-    <p>Title: ${entry.title}</p>
-    <p>Date: ${entry.date}</p>
-    <p>Description: ${entry.description}</p>
-    <p>Category: ${entry.category}</p>
-    <p>Amount: ${entry.amount}</p>
-</c:forEach>
-
 </body>
 </html>

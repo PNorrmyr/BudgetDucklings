@@ -24,10 +24,11 @@ public class PaymentRepository {
         List<PaymentEntry> entries = new ArrayList<>();
 
 
-        String sql = "SELECT * FROM payments";
+        String sql = "SELECT title, date, description, category, amount FROM payments WHERE owner = ?";
 
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1,owner);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {

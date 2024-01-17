@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession(true);
             session.setAttribute("username", username);
 
-            resp.sendRedirect("invoice.jsp");
+            resp.sendRedirect("/BudgetDucklings_war/invoice");
         }
     }
 

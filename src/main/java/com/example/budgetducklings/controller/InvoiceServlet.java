@@ -25,26 +25,24 @@ public class InvoiceServlet extends HttpServlet {
         HttpSession session = req.getSession(true);
         String username = (String) session.getAttribute("username");
 
-        List<PaymentEntry> paymentEntries = paymentService.getAll(username);
 
-        // Skicka listan med betalningsposter till JSP-sidan
-        req.setAttribute("paymentEntries", paymentEntries);
-
-        if (paymentEntries.isEmpty()) {
-            System.out.println("The list of payment entries is empty.");
+        if (username == null) {
+            resp.sendRedirect("/index.jsp");
         } else {
-            System.out.println("The list of payment entries is not empty.");
+            List<PaymentEntry> paymentEntries = paymentService.getAll(username);
+
+            PrintWriter out = resp.getWriter();
+            out.println("<h1>" + username + "'s Invoices</h2>");
+            out.println("<form action=\"addPayment.jsp\">");
+            out.println("<button >Add payment</button>");
+            out.println("</form>");
+            out.println("<form action=\"editPayment.jsp\">");
+            out.println("<button>Edit payments</button>");
+            out.println("</form>");
+
+
+            for (PaymentEntry entry : paymentEntries) {
+                out.println("<br>Title: " + entry.getTitle() + "<br>Date: " + entry.getDate() + "<br>Description: " + entry.getDescription() + "<br>Category: " + entry.getCategory() + "<br>Amount: " + entry.getAmount() + "<br>--------------");
+            }
         }
-
-        System.out.println("Sending paymentEntries to invoice.jsp: " + paymentEntries);
-
-        // Skicka begäran till JSP-sidan
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/invoice.jsp");
-        dispatcher.forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/invoice.jsp");
-    }
-}
+}}
