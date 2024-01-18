@@ -52,6 +52,10 @@ public class InvoiceServlet extends HttpServlet {
                 out.println("Expense number, " + entry.getId() + "<br>Title: " + entry.getTitle() + "<br>Date: " + entry.getDate() + "<br>Description: " + entry.getDescription() + "<br>Category: " + entry.getCategory() + "<br>Amount: " + entry.getAmount() + "<br>--------------<br>");
             }
 
+            out.println("<form method=\"POST\" action=\"/auth/logout\">");
+            out.println("<button>Logout</button>");
+            out.println("</form>");
+
         }
     }
 

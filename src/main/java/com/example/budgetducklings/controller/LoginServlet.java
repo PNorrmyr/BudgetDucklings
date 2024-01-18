@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/login")
+@WebServlet("/auth/*")
 public class LoginServlet extends HttpServlet {
 
 
@@ -24,8 +24,10 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            login(req, resp);
-
+           switch (req.getPathInfo()) {
+               case "/login": login(req, resp); break;
+               case "/logout": logout(req, resp); break;
+           }
     }
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
