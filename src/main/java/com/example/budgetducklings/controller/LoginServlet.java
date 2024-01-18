@@ -15,9 +15,11 @@ import java.util.Map;
 public class LoginServlet extends HttpServlet {
 
 
-    private Map<String, String> users = new HashMap<>() {{
-        put("phil", "123");
-        put("nor", "123");
+    private final Map<String, String> users = new HashMap<>() {{
+        put("Bob", "123");
+        put("Yves", "abc");
+        put("Dan", "xyz");
+        put("Ann", "789");
     }};
 
     @Override
