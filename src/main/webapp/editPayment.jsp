@@ -11,8 +11,8 @@
     <title>Edit Expense</title>
 </head>
 <body>
-<h2>Edit Expense</h2>
-<form method="post" action="${pageContext.request.contextPath}/payment">
+<h2>Edit Expense number <%= request.getParameter("id") %></h2>
+<form method="post" action="${pageContext.request.contextPath}/payment/edit">
     <label>Title</label>
     <input type="text" name="title">
     <br>
@@ -31,6 +31,7 @@
         <br>
         <label>Amount</label>
         <input type="text" name="amount">
+        <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
         <br>
 
         <button>Submit changes</button>

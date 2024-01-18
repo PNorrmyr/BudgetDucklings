@@ -1,9 +1,11 @@
 package com.example.budgetducklings.model;
 
+import java.sql.Date;
+
 public class PaymentEntry {
 
     private String title;
-    private String date;
+    private Date date;
     private String description;
     private String category;
     private String amount;
@@ -15,7 +17,7 @@ public class PaymentEntry {
         return title;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -36,7 +38,7 @@ public class PaymentEntry {
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = Date.valueOf(date);
     }
 
     public void setDescription(String description) {

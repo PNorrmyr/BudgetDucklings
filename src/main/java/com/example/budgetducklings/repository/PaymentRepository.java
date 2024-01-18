@@ -87,21 +87,23 @@ public class PaymentRepository {
         return true;
     }
 
-   /* public PaymentEntry update(PaymentEntry entry) {
-        String sql = "INSERT INTO payments (title, date, description, category, amount) VALUES (?, ?, ?, ?, ?)";
+   public void update(PaymentEntry entry) {
+        String sql = "UPDATE payments SET title = ?, date = ?, description = ?, category = ?, amount = ? WHERE owner = ? and id = ?";
 
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, entry.getTitle());
+            pstmt.setString(1, entry.getTitle() );
             pstmt.setDate(2, entry.getDate());
             pstmt.setString(3, entry.getDescription());
             pstmt.setString(4, entry.getCategory());
-            pstmt.setInt(5, entry.getAmount());
+            pstmt.setString(5, entry.getAmount());
+            pstmt.setString(6, entry.getOwner());
+            pstmt.setInt(7, entry.getId());
 
             pstmt.execute();
+            System.out.println("running sql");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
-    }*/
+    }
 }

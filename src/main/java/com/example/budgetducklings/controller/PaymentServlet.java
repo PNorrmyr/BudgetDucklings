@@ -30,6 +30,7 @@ public class PaymentServlet extends HttpServlet {
         switch (req.getPathInfo()){
             case "/add": createEntry(req,resp); break;
             case "/delete": deleteEntry(req,resp); break;
+            case "/edit": updateEntry(req,resp); break;
         }
     }
 
@@ -72,18 +73,23 @@ public class PaymentServlet extends HttpServlet {
         HttpSession session = req.getSession(true);
         String username = (String) session.getAttribute("username");
 
-
-        if (username==null) {
+        if (username == null) {
             resp.sendRedirect("/index.jsp");
         } else {
-            String title = req.getParameter("title");
-            Date date = Date.valueOf(req.getParameter("date"));
-            String description = req.getParameter("description");
-            String category = req.getParameter("category");
-            int amount = Integer.parseInt(req.getParameter("amount"));
+            int id = Integer.parseInt(req.getParameter("id"));
 
+            for (PaymentEntry entry: paymentService.getAll(username)) {
+                if (id == entry.getId()){
+                    entry.setTitle(req.getParameter("title"));
+                    entry.setDate(req.getParameter("date"));
+                    entry.setDescription(req.getParameter("description"));
+                    entry.setCategory(req.getParameter("category"));
+                    entry.setAmount(req.getParameter("amount"));
 
-
+                    paymentService.update(entry);
+                }
+            }
         }
+        resp.sendRedirect("/BudgetDucklings_war/invoice");
     }
 }

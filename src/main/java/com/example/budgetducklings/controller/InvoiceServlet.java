@@ -38,7 +38,7 @@ public class InvoiceServlet extends HttpServlet {
             out.println("<button >Add payment</button>");
             out.println("</form>");
 
-            out.println("<form action=\"editPayment.jsp\">");
+            out.println("<form method= \"POST\" action=\"editPayment.jsp\">");
             out.println("<button>Edit expense</button>");
             out.print("<input type=\"number\" name=\"id\" placeholder=\"Expense number\">");
             out.println("</form>");
@@ -52,5 +52,8 @@ public class InvoiceServlet extends HttpServlet {
             for (PaymentEntry entry : paymentEntries) {
                 out.println("Expense number, " + entry.getId() + "<br>Title: " + entry.getTitle() + "<br>Date: " + entry.getDate() + "<br>Description: " + entry.getDescription() + "<br>Category: " + entry.getCategory() + "<br>Amount: " + entry.getAmount() + "<br>--------------<br>");
             }
+
         }
-}}
+    }
+
+}

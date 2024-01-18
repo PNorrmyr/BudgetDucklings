@@ -22,6 +22,7 @@ public class PaymentService {
         return paymentRepository.delete(owner, id);
     }
 
-    //public PaymentEntry update(PaymentEntry entry){
-    //}
+    public void update(PaymentEntry entry){
+        paymentRepository.update(entry);
+    }
 }

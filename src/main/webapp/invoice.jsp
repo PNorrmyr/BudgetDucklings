@@ -11,14 +11,24 @@
     <title>invoice</title>
 </head>
 <body>
-<h2>Invoice</h2>
-<form action="addPayment.jsp">
-    <button >Add payment</button>
-</form>
+<h1> + username + "'s Invoices</h1>
 
-<form action="editPayment.jsp">
-    <button>Edit payments</button>
-</form>
+    <form action=\"addPayment.jsp\">
+        <button>Add payment</button>
+    </form>
 
+    <form method= \"POST\" action=\"editPayment.jsp\">
+        <button>Edit expense</button>");
+        <input type="number" name="id" placeholder="Expense number">
+    </form>
+
+    <form method= "POST" action="/BudgetDucklings_war/payment/delete">
+        <button>Delete expense</button>
+        <input type="number" name="id" placeholder="Expense Number">
+    </form>
+
+    <form method="POST" action="/login/logout">
+        <button>Logout</button>
+    </form>
 </body>
 </html>
